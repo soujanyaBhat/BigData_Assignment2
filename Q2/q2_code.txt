@@ -1,0 +1,24 @@
+val lines = sc.textFile("/FileStore/tables/soc_LiveJournal1Adj-2d179.txt")
+val userData = sc.textFile("/FileStore/tables/userdata.txt").map(x => x.split(","))
+val lines_filtered = lines.filter{_.split("\t").size > 1}
+val splits = lines_filtered.map(x => (x.split("\t")(0), x.split("\t")(1).split(",")))
+val userPairs = splits.flatMap {
+  case (user, friend_list) => {
+    friend_list.map(x => ((x.toInt min user.toInt,x.toInt max user.toInt),friend_list))
+  }
+}
+val mutual_friends= userPairs.reduceByKey((a, b) => a.toSet.intersect(b.toSet).toArray).filter(_._2.length > 0)
+
+val mutualFriends_count = mutual_friends.map(x => (x._1,x._2.length)).sortBy(_._2,false)
+val topFriends_list = mutualFriends_count.take(10)
+val topFriends = sc.parallelize(topFriends_list)
+val userData_int = userData.keyBy(t => t(0).toInt)
+val userA = topFriends.keyBy(t => t._1._1)
+val d1 = userA.leftOuterJoin(userData_int).map(t => (t._2._1._2, t._2._2.get(1), t._2._2.get(2), t._2._2.get(3), t._2._1._1._2))
+val userB = d1.keyBy(t => t._5)
+val d2= userB.leftOuterJoin(userData_int).map(t => (t._2._1._1, t._2._1._2, t._2._1._3, t._2._1._4, t._2._2.get(1), t._2._2.get(2), t._2._2.get(3)))
+d2.collect()
+dbutils.fs.rm("/q2", true)
+dbutils.fs.rm("/FileStore/tables/q2_output.txt", true)
+d2.map(x => x._1+"\t"+x._2+"\t"+x._3+"\t"+x._4+"\t"+x._5+"\t"+x._6+"\t"+x._7).saveAsTextFile("/q2")
+dbutils.fs.cp("./q2/part-00000","dbfs:/FileStore/tables/q2_output.txt", true)

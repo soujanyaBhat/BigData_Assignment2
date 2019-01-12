@@ -1,0 +1,11 @@
+val lines = sc.textFile("/FileStore/tables/soc_LiveJournal1Adj-2d179.txt")
+val lines_filter = lines.filter{_.split("\t").size > 1}
+val splits = lines_filter.map(x => (x.split("\t")(0), x.split("\t")(1).split(",")))
+val userPairs = splits.flatMap {
+  case (user, friend_list) => {friend_list.map(x => ((x.toInt min user.toInt,x.toInt max user.toInt),friend_list))}}
+val mutual_friends = userPairs.reduceByKey((x, y) => x.toSet.intersect(y.toSet).toArray).filter(_._2.length > 0)
+dbutils.fs.rm("/q1", true)
+dbutils.fs.rm("/FileStore/tables/q1_output.txt", true)
+val mutualFriends=mutual_friends.map(x => x._1._1+"\t"+x._1._2+"\t"+x._2.mkString(","))
+mutualFriends.saveAsTextFile("/q1")
+dbutils.fs.cp("./q1/part-00000","dbfs:/FileStore/tables/q1_output.txt", true)

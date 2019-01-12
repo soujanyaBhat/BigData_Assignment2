@@ -1,0 +1,14 @@
++--------------------+--------------------+--------------------+-----+
+|         business_id|             address|          categories|stars|
++--------------------+--------------------+--------------------+-----+
+|AqzK7Dr-9zMoxBpsZ...|1212 W Springfiel...|List(Middle Schoo...|  5.0|
+|5FJdQwSolZ9WQMnFZ...|4225 Executive Sq...|List(Professional...|  5.0|
+|VtLD3XfTT7T9T70UD...|3636 Nobel DrSte ...|List(Real Estate ...|  5.0|
+|XYsw_9orEYR1T7jRo...|143 Harvard Ave2n...|List(Professional...|  5.0|
+|pBkkizqn2jsP6GJ-J...|4150 Regents Park...|List(Dentists, He...|  5.0|
+|ANQJQELoPU2z_nCgO...|731 Peachtree Str...|List(Religious Or...|  5.0|
+|wl0VZ6n9LrMpDGy_J...|103 Carnegie CtrS...|List(Shopping, Co...|  5.0|
+|CJiN7ZzW_iBJue4eb...|1176 E Colorado B...|List(Investing, F...|  5.0|
+|ZCELOqe_TRJ3I5ldV...|707 S 16th StLafa...|List(Automotive, ...|  5.0|
+|oBsbQlzSdK7XozGE6...|200 Lothrop StOak...|List(Doctors, Hos...|  5.0|
++--------------------+--------------------+--------------------+-----+

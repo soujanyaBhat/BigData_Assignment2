@@ -1,0 +1,24 @@
++--------------------+-----+
+|             user_id|stars|
++--------------------+-----+
+|iL_CR-WQnveqrff9L...|  5.0|
+|BPkM2rnhMO68Le6Xs...|  5.0|
+|M6h9KYZHFaZYmVFop...|  1.0|
+|4_fkSSTFYEUXYPhtp...|  5.0|
+|ocv3RMJZFScAMHmud...|  5.0|
+|SSvalZkiN3vqOSH76...|  5.0|
+|9OyPEDQ0N6i0rWv9S...|  5.0|
+|0sZ1BLZEocy6fl5Gy...|  5.0|
+|T_ua0osjaKMUmyhwO...|  5.0|
+|FHfjAReTovbu0chLv...|  4.0|
+|rhHvKILdT3wYowrO2...|  3.0|
+|LW-4t2psvoehLqkcV...|  3.0|
+|7b9aT8BhpWaFncPaP...|  4.0|
+|QBgKo-REQCVZBQXT6...|  4.0|
+|tIRh_AmxJhUgzoHUB...|  3.0|
+|8fgiuFMuN5yfoALzt...|  2.0|
+|cJVqHvDLN9g3GE4Vf...|  3.0|
+|ChfUouMqqio8Zin2w...|  2.0|
+|DhOSuTlWNnlzoF0Qx...|  3.0|
+|mZBwEijHmWFTyPktV...|  1.0|
++--------------------+-----+

@@ -1,0 +1,13 @@
+from pyspark.sql.functions import split
+from pyspark.sql.functions import udf, desc
+from pyspark.sql.types import IntegerType
+from pyspark.sql.functions import mean as _mean, stddev as _stddev, col
+from pyspark.sql.functions import avg, first
+
+review = sc.textFile("FileStore/tables/review.csv").map(lambda line: line.split("::")).toDF()
+business = sc.textFile("FileStore/tables/business.csv").map(lambda line: line.split("::")).toDF()
+review = review.select(review._1.alias('review_id'), review._2.alias('user_id'), review._3.alias('business_id'), review._4.alias('stars'))
+business = business.select(business._1.alias('business_id'), business._2.alias('address'), business._3.alias('categories'))
+result= review.join(business, 'business_id' )
+
+result.groupBy("business_id").agg(first("address"), first("categories"), avg("stars")).toDF("business_id", "address", "categories","stars").orderBy(desc('stars')).limit(10).show()
